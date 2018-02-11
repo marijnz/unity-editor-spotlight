@@ -16,6 +16,12 @@ public class EditorSpotlight : EditorWindow, IHasCustomMenu
         public static readonly GUIStyle entryEven;
         public static readonly GUIStyle entryOdd;
 
+        public static readonly string proSkinHighlightColor = "eeeeee";
+        public static readonly string proSkinNormalColor = "cccccc";
+
+        public static readonly string personalSkinHighlightColor = "eeeeee";
+        public static readonly string personalSkinNormalColor = "222222";
+
         static Styles()
         {
             inputFieldStyle = new GUIStyle(EditorStyles.textField)
@@ -25,7 +31,10 @@ public class EditorSpotlight : EditorWindow, IHasCustomMenu
                 focused = new GUIStyleState()
             };
 
-            placeholderStyle = new GUIStyle(inputFieldStyle) {normal = {textColor = new Color(1, 1, 1, .2f)}};
+            placeholderStyle = new GUIStyle(inputFieldStyle) {normal =
+            {
+                textColor = EditorGUIUtility.isProSkin ? new Color(1, 1, 1, .2f) : new Color(.2f, .2f, .2f, .4f)
+            }};
 
 
             resultLabelStyle = new GUIStyle(EditorStyles.largeLabel)
@@ -255,21 +264,29 @@ public class EditorSpotlight : EditorWindow, IHasCustomMenu
                 int start = assetName.ToLower().IndexOf(input);
                 int end = start + input.Length;
 
+                var highlightColor = EditorGUIUtility.isProSkin
+                    ? Styles.proSkinHighlightColor
+                    : Styles.personalSkinHighlightColor;
+
+                var normalColor = EditorGUIUtility.isProSkin
+                    ? Styles.proSkinNormalColor
+                    : Styles.personalSkinNormalColor;
+
                 // Sometimes the AssetDatabase finds assets without the search input in it.
                 if (start == -1)
-                    coloredAssetName.Append(string.Format("<color=#cccccc>{0}</color>", assetName));
+                    coloredAssetName.Append(string.Format("<color=#{0}>{1}</color>", normalColor, assetName));
                 else
                 {
                     if (0 != start)
-                        coloredAssetName.Append(string.Format("<color=#cccccc>{0}</color>",
-                            assetName.Substring(0, start)));
+                        coloredAssetName.Append(string.Format("<color=#{0}>{1}</color>",
+                            normalColor, assetName.Substring(0, start)));
 
                     coloredAssetName.Append(
-                        string.Format("<color=#eeeeee><b>{0}</b></color>", assetName.Substring(start, end - start)));
+                        string.Format("<color=#{0}><b>{1}</b></color>", highlightColor, assetName.Substring(start, end - start)));
 
                     if (end != assetName.Length - end)
-                        coloredAssetName.Append(string.Format("<color=#cccccc>{0}</color>",
-                            assetName.Substring(end, assetName.Length - end)));
+                        coloredAssetName.Append(string.Format("<color=#{0}>{1}</color>",
+                            normalColor, assetName.Substring(end, assetName.Length - end)));
                 }
 
                 var labelRect = elementRect;
