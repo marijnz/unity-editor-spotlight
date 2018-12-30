@@ -318,6 +318,7 @@ public class EditorSpotlight : EditorWindow, IHasCustomMenu
     void OpenSelectedAssetAndClose()
     {
         Close();
+        if (hits.Count <= selectedIndex) return;
 
         AssetDatabase.OpenAsset(GetSelectedAsset());
 
