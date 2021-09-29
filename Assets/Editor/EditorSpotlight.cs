@@ -31,6 +31,8 @@ public class EditorSpotlight : EditorWindow, IHasCustomMenu
                 focused = new GUIStyleState()
             };
 
+            inputFieldStyle.focused.textColor = Color.white;
+
             placeholderStyle = new GUIStyle(inputFieldStyle) {normal =
             {
                 textColor = EditorGUIUtility.isProSkin ? new Color(1, 1, 1, .2f) : new Color(.2f, .2f, .2f, .4f)
