@@ -338,10 +338,13 @@ public class EditorSpotlight : EditorWindow, IHasCustomMenu
 
     public void EnforceWindowSize()
     {
-        var pos = position;
+        /* var pos = position;
         pos.width = 500;
         pos.height = BaseHeight;
-        position = pos;
+        position = pos; */
+
+        position.Set(position.x, position.y, 500, BaseHeight);
+
     }
 
     public void AddItemsToMenu(GenericMenu menu)
