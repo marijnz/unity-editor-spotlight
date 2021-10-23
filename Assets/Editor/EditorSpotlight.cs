@@ -31,6 +31,8 @@ public class EditorSpotlight : EditorWindow, IHasCustomMenu
                 focused = new GUIStyleState()
             };
 
+            inputFieldStyle.focused.textColor = Color.white;
+
             placeholderStyle = new GUIStyle(inputFieldStyle) {normal =
             {
                 textColor = EditorGUIUtility.isProSkin ? new Color(1, 1, 1, .2f) : new Color(.2f, .2f, .2f, .4f)
@@ -338,10 +340,13 @@ public class EditorSpotlight : EditorWindow, IHasCustomMenu
 
     public void EnforceWindowSize()
     {
-        var pos = position;
+        /* var pos = position;
         pos.width = 500;
         pos.height = BaseHeight;
-        position = pos;
+        position = pos; */
+
+        position.Set(position.x, position.y, 500, BaseHeight);
+
     }
 
     public void AddItemsToMenu(GenericMenu menu)
