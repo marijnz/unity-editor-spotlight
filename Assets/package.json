@@ -1,0 +1,8 @@
+{
+  "name": "com.marijnz.unity-editor-spotlight",
+  "version": "1.0.0",
+  "displayName": "Spotlight",
+  "unity": "2022.3",
+  "dependencies": {
+  }
+}
