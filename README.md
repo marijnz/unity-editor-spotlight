@@ -11,7 +11,7 @@ Simple MacOS-like Spotlight file search in Unity. It shows your most opened file
 Add path to your project's manifest:
 ```json
 "dependencies": {
-    "com.seblague.pathcreator": "https://github.com/hannesdelbeke/Path-Creator.git?path=/Assets/PathCreator/Core",  
+    "com.marijnz.unity-editor-spotlight": "https://github.com/marijnz/unity-editor-spotlight.git?path=/Assets",  
 }
 ```
 
